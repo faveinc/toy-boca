@@ -11,6 +11,7 @@ export interface ButtonProps {
   label: string;
   /** Optional click handler */
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 /** Primary UI component for user interaction */
