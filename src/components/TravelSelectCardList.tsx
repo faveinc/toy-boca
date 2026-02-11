@@ -1,7 +1,7 @@
 'use client';
 import * as React from "react";
 import { CardItem } from '@/lib/mocks/travelCards'
-
+// import { CARD_API } from '@/lib/api/travel';
 type Props = {
     selectCard: number[];
     cardList: CardItem[];//데이터 가져옴
