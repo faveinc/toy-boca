@@ -1,6 +1,5 @@
 'use client';
 import * as React from "react";
-import { useEffect } from 'react';
 // import { CardItem } from '@/lib/mocks/travelCards'
 import TravelCard from '@/src/components/TravelCard'
 import { TravelCardApi } from '@/types/travel';
@@ -15,10 +14,18 @@ type Props = {
 
 const TravelCardList = ({ cardList , selectedId , onSelect, activeRegion }: Props) => {
 
+    //cardList의 데이터중 region과 activeRegion 이 일치하는것만 뿌려주기 
+    let filterCardList = cardList;
+    //근데 activeRegion 이 ALL 이면 모든 데이터를 뿌려주기 
+    if (activeRegion === 'ALL') {
+        filterCardList = cardList;
+    } else {
+        filterCardList = cardList.filter((cardItem) => cardItem.region === activeRegion);
+    }
 
     return (
-        <div className="travel-card-list flex flex-wrap gap-8 justify-center">
-            {cardList.map((cardItem, index) => (
+        <div className="travel-card-list flex flex-wrap gap-4 justify-center">
+            {filterCardList.map((cardItem, index) => (
                 <TravelCard 
                     key={index} 
                     index={index} 

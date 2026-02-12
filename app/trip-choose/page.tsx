@@ -51,14 +51,18 @@ export default function TripList() {
                 />
                  {/*선택한 여행지 목록*/}
                  <SelectedCardList 
-                    selectCard={selectedId} 
+                    selectCard={selectedId}//
                     cardList={travelList}
                 />
            </div>
 
            {/*여행지 리스트 목록*/}
            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <TravelCardList cardList={travelList} selectedId={selectedId} onSelect={toggleSelectCard} activeRegion={activeRegion}/>
+            <TravelCardList 
+                cardList={travelList} 
+                selectedId={selectedId} //선택한 아이디 selectedId로 전달
+                onSelect={toggleSelectCard} 
+                activeRegion={activeRegion}/>
            </div>
 
         </main>
