@@ -3,44 +3,29 @@ import * as React from "react";
 import { useEffect } from 'react';
 // import { CardItem } from '@/lib/mocks/travelCards'
 import TravelCard from '@/src/components/TravelCard'
+import { TravelCardApi } from '@/types/travel';
 
-type CardItem = {
-    destinationId: string;
-    destinationName: string;
-    dateStart: string;
-    dateEnd: string;
-    region: string;
-    country: string;
-    memo: string;
-    description: string;
-    isConfirmed: boolean;
-    imageUrl: string;
-    createdAt: string;
-  };
 
 type Props = {
-    cardList: CardItem[];
-    selectedId: number[];               // 선택된 카드 id 배열
+    cardList: TravelCardApi[];
+    selectedId: number[];// 선택된 카드 id 배열
     onSelect: (id: number) => void;
-    // selectedId: number; //선택한 카드 id 배열
-    // onSelect: (id: number) => void;//onSelect
+    activeRegion: string; // 활성화된 region 필터
 };
 
-const TravelCardList = ({ cardList , selectedId , onSelect }: Props) => {
+const TravelCardList = ({ cardList , selectedId , onSelect, activeRegion }: Props) => {
 
-
-    useEffect(()=>{
-        cardList.map((item, index) => {
-            console.log(`index ${index}:`, item);
-            return null; // React에서는 반환값 필요, 콘솔만 찍을거면 null
-          });
-
-    },[cardList])
 
     return (
         <div className="travel-card-list flex flex-wrap gap-8 justify-center">
-            {cardList.map((item,index) => (
-                <TravelCard key={index} index={index} cardItem={item}  isSelected={selectedId.includes(index)} onSelect={onSelect} />
+            {cardList.map((cardItem, index) => (
+                <TravelCard 
+                    key={index} 
+                    index={index} 
+                    cardItem={cardItem}  
+                    isSelected={selectedId.includes(index)} 
+                    onSelect={onSelect} 
+                />
             ))}
         </div>
     );

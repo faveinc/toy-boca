@@ -5,15 +5,16 @@ import TravelListTab from '@/src/components/TravelListTab';
 import TravelCardList from '@/src/components/TravelCardList';
 import SelectedCardList from '@/src/components/TravelSelectCardList';
 import {TRAVEL_TABS} from '@/lib/mocks/travelTabs'
-import {TRAVEL_CARDS} from '@/lib/mocks/travelCards'
+// import {TRAVEL_CARDS} from '@/lib/mocks/travelCards'
 import { getTravelApi } from '@/lib/api/travel';
 
 
 
 export default function TripList() {
 
-   const [activeRegion, setActiveRegion] = useState('all');//기본값으로 지정
+   const [activeRegion, setActiveRegion] = useState('ALL');//tab 기본값으로 지정 | 자식으로부터 변경시 업데이트 
    const [selectedId, setSelectedId] = useState<number[]>([]);//기본적으로 선택ID 없음
+   const [travelList, setTravelList] = useState([]);//배열형태
 
    const toggleSelectCard = (id: number) => {
     setSelectedId(prev =>
@@ -23,7 +24,7 @@ export default function TripList() {
     );
   };
 
-  const [travelList, setTravelList] = useState([]);//배열형태
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +32,7 @@ export default function TripList() {
         setTravelList(res.data)
     };
     fetchData();
-  }, [],);
+  }, []);
 
 
     return (
@@ -44,7 +45,7 @@ export default function TripList() {
            <div className="ch-tab sticky top-0 z-20 bg-[#fdfbf7]/95 backdrop-blur-sm border-b border-stone-100 py-4 mb-12 shadow-sm">
                 {/* 여행 스타일 분류 tab*/}
                 <TravelListTab
-                    tabList={travelList}
+                    tabList={TRAVEL_TABS}
                     activeRegion={activeRegion}
                     onChange={setActiveRegion}
                 />
@@ -57,7 +58,7 @@ export default function TripList() {
 
            {/*여행지 리스트 목록*/}
            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <TravelCardList cardList={travelList} selectedId={selectedId} onSelect={toggleSelectCard}/>
+            <TravelCardList cardList={travelList} selectedId={selectedId} onSelect={toggleSelectCard} activeRegion={activeRegion}/>
            </div>
 
         </main>
