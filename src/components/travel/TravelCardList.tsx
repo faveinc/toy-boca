@@ -1,8 +1,8 @@
 'use client';
 import * as React from "react";
 // import { CardItem } from '@/lib/mocks/travelCards'
-import TravelCard from '@/src/components/TravelCard'
-import { TravelCardApi } from '@/types/travel';
+import TravelCard from '@/src/components/travel/TravelCard'
+import { TravelCardApi } from '@/lib/travel/types';
 
 
 type Props = {

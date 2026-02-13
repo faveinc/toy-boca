@@ -1,6 +1,6 @@
 'use client';
 import * as React from "react";
-import { TravelCardApi } from '@/types/travel';
+import { TravelCardApi } from '@/lib/travel/types';
 // import { CARD_API } from '@/lib/api/travel';
 type Props = {
     selectCard: number[];
@@ -32,6 +32,7 @@ const SelectedCardList = ({ selectCard, cardList }: Props) => {
               </li>
             ))}
           </ul>
+          <div></div>
         </div>
       );
   };

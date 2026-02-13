@@ -1,10 +1,9 @@
 'use client';
 import { useEffect } from 'react';
-import { TabItem } from '@/lib/mocks/travelTabs'
 
 
 type Props = {
-  tabList: TabItem[];
+  tabList: { region: string }[];
   activeRegion: string;
   onChange: (region: string) => void; //클릭할때마다 클릭도니 region으로 상위 전달
 };

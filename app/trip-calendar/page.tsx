@@ -30,6 +30,18 @@ export default function RangeCalendar() {
 
   const isCompleteRange = !!(dateRange?.from && dateRange?.to);
 
+  // 날짜를 URL 쿼리 파라미터 형식으로 변환
+  const getDateQueryString = () => {
+    if (!dateRange?.from || !dateRange?.to) return '';
+    const formatDate = (date: Date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    };
+    return `?startDate=${formatDate(dateRange.from)}&endDate=${formatDate(dateRange.to)}`;
+  };
+
   return (
     <main className="min-h-screen w-full bg-[#FAFAF8] selection:bg-[#B8860B]/20 selection:text-[#1A1A1A]">
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-24">
@@ -65,7 +77,7 @@ export default function RangeCalendar() {
           </div>
           <div className="rounded-full bg-black px-6 py-2 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-zinc-50 dark:text-black dark:hover:bg-zinc-200">
                 {isCompleteRange ? (
-                  <Link href="/trip-choose">예약하기</Link>
+                  <Link href={`/trip-choose${getDateQueryString()}`}>예약하기</Link>
                 ) : (
                   <span className="">예약 날짜 선택하기</span>
                 )}
